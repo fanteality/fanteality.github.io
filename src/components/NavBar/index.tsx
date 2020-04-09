@@ -1,4 +1,17 @@
-import React from 'react';
-export default function NavBar(props: { title: string }) {
-    return <div className="blog_navbar">这是{props.title}</div>;
+import React, { useState, useEffect } from 'react';
+import './index.scss';
+export default function NavBar() {
+    const [navList, setList] = useState<string[]>([]);
+    useEffect(() => {
+        setList(['首页', 'HTML', 'CSS', 'React']);
+    }, []);
+    return (
+        <div className="blog_navbar">
+            {navList.map((ele, index) => (
+                <div className="blog_navbar-item" key={index}>
+                    {ele}
+                </div>
+            ))}
+        </div>
+    );
 }
