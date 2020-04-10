@@ -2,10 +2,11 @@ import React from 'react';
 import { routeConfig, IFMenu } from './config';
 import { Route, Switch } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
+import PageLoading from 'components/PageLoading';
 import allPages from '../page';
 export default () => {
     return (
-        <React.Suspense fallback={'loading...'}>
+        <React.Suspense fallback={<PageLoading/>}>
             <Switch>
                 {routeConfig.map((ele: IFMenu, index: number) => {
                     return (

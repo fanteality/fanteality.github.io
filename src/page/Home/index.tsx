@@ -1,8 +1,9 @@
 import React from 'react';
-import PageLoading from 'components/PageLoading';
+import Banner from 'components/Banner';
 export default () => {
-    return <div className="blog_home">
-        这是首页
-        <PageLoading />
-    </div>;
+    return (
+        <div className="blog_home">
+            <Banner />
+        </div>
+    );
 };
