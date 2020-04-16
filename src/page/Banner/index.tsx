@@ -20,7 +20,7 @@ export default withRouter((props) => {
         let x = window.innerWidth,
             y = window.innerHeight;
         if (c) {
-            for (var i = 0; i < 150; i++) {
+            for (var i = 0; i < 300; i++) {
                 arr.push(new Gl(c, x / 2, y / 2, 1, gc(), 0.01));
             }
             anim();
@@ -33,7 +33,7 @@ export default withRouter((props) => {
         cn.width = window.innerWidth;
         setCn(cn.getContext('2d'));
         // 加载完毕生成画布
-        window.onload = render;
+        render();
     }, [render]);
     // 随机生成描边颜色
     function gc(): string {
@@ -46,10 +46,8 @@ export default withRouter((props) => {
     }
     return (
         <div className="blog_banner">
-            <canvas ref={canvas}></canvas>
-            <div className="blog_banner_text">
-                这里是小葵花课堂
-            </div>
+            <canvas ref={canvas}>你的浏览器不支持canvas，请更换为Chrome打开</canvas>
+            <div className="blog_banner_text">这里是小葵花课堂</div>
         </div>
     );
 });
