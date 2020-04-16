@@ -5,4 +5,7 @@ export interface IFMenu {
     component: string;
 }
 // 路由表配置
-export const routeConfig: IFMenu[] = [{ title: '', path: '/', component: 'Home' }];
+export const routeConfig: IFMenu[] = [
+    { title: '', path: '/Home', component: 'Home' },
+    { title: '', path: '/', component: 'Banner' },
+];

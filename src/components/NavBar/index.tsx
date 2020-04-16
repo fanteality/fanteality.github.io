@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './index.scss';
-export default function NavBar() {
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+const NavBar = (props: RouteComponentProps) => {
     const [navList, setList] = useState<string[]>([]);
     useEffect(() => {
         setList(['首页', 'HTML', 'CSS', 'React']);
     }, []);
-    return (
+    let { pathname = '' } = props.history.location;
+    return pathname === '/' ? null : (
         <div className="blog_navbar">
             {navList.map((ele, index) => (
                 <div className="blog_navbar-item" key={index}>
@@ -14,4 +16,5 @@ export default function NavBar() {
             ))}
         </div>
     );
-}
+};
+export default withRouter(NavBar) as any;
