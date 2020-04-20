@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
+import Home from 'page/Home';
 import Gl from './canvas';
 import './index.scss';
 var arr: any = [];
 export default withRouter((props) => {
     const canvas: React.MutableRefObject<any> = useRef();
     const [c, setCn] = useState<CanvasRenderingContext2D>();
+    const [scale, setScale] = useState(0);
     const anim = useCallback(() => {
         window.requestAnimationFrame(anim);
         if (c) {
-            c.fillStyle = 'rgba(0,0,0,0.09)';
+            c.fillStyle = 'rgba(0,0,0,0.1)';
             c.fillRect(0, 0, window.innerWidth, window.innerHeight);
             arr.forEach((ele: Gl) => {
                 ele.draw();
@@ -20,8 +22,8 @@ export default withRouter((props) => {
         let x = window.innerWidth,
             y = window.innerHeight;
         if (c) {
-            for (var i = 0; i < 300; i++) {
-                arr.push(new Gl(c, x / 2, y / 2, 1, gc(), 0.01));
+            for (var i = 0; i < 600; i++) {
+                arr.push(new Gl(c, x / 2, y / 2, gc(), Math.random() / 300));
             }
             anim();
         }
@@ -44,10 +46,20 @@ export default withRouter((props) => {
         }
         return c;
     }
+    function toHome() {
+        window.setInterval(() => {
+            setScale((n) => {
+                return n + 0.2;
+            });
+        }, 10);
+    }
     return (
         <div className="blog_banner">
             <canvas ref={canvas}>你的浏览器不支持canvas，请更换为Chrome打开</canvas>
-            <div className="blog_banner_text">这里是小葵花课堂</div>
+            <div className="blog_banner_text" onClick={toHome}>
+                <p>这里是小葵花课堂</p>
+            </div>
+            <div className="blog_banner_circle" style={{ transform: `scale(${scale})` }}></div>
         </div>
     );
 });
