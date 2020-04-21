@@ -7,8 +7,19 @@ module.exports = function override(config, env) {
     config.resolve.alias = {
         ...config.resolve.alias,
         page: path.resolve(appSrc, './page'),
-        components: path.resolve(appSrc, './components')
+        components: path.resolve(appSrc, './components'),
     };
-  
+    //   配置postcss
+    require('react-app-rewire-postcss')(config, {
+        plugins: () => [
+            require('postcss-preset-env')({
+                autoprefixer: {
+                    flexbox: 'no-2009',
+                },
+                browsers: 'last 2 versions',
+                stage: 3,
+            }),
+        ],
+    });
     return config;
 };

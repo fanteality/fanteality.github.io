@@ -6,6 +6,5 @@ export interface IFMenu {
 }
 // 路由表配置
 export const routeConfig: IFMenu[] = [
-    { title: '', path: '/Home', component: 'Home' },
-    { title: '', path: '/', component: 'Banner' },
+    { title: '', path: '/', component: 'Home' },
 ];

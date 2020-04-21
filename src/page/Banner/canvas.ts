@@ -21,7 +21,7 @@ export default class Gl {
         this.lineWidth = Math.random() * 3;
         this.shine = true;
         this.theta = Math.random() * Math.PI * 2;
-        this.t = Math.random() * 1000;
+        this.t = Math.random() * window.innerWidth;
     }
     draw(): void {
         this.lineWidth = this.controlShine();
