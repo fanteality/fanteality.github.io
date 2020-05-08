@@ -4,6 +4,7 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
+    @extend .noselect;
     &_text {
         left: 0;
         top: 0;
@@ -18,17 +19,30 @@
         align-items: center;
         position: absolute;
         p {
-            @extend .noselect;
-            transition: all 0.2s;
+            margin-bottom: 30px;
             animation: textAni 0.8s ease-in-out;
         }
     }
-    &_btn{
-        font-size: 24px;
-        margin-top: 30px;
-        border-radius: 10px;
-        padding: 10px 15px;
-        border: 1px solid #fff;
+    &_btn {
+        cursor: pointer;
+        font-size: 0;
+        overflow: hidden;
+        position: relative;
+        rect {
+            width: 100px;
+            height: 48px;
+            fill: transparent;
+            animation: rectAni 0.8s ease-in-out 0.3s backwards;
+        }
+        svg:nth-child(2){
+            left: 0;
+            top: 0;
+            position: absolute;
+            animation: textAni .9s ease-in-out .3s backwards;
+        }
+        text {
+            font-size: 18px;
+        }
     }
     &_circle {
         left: 0;
@@ -49,6 +63,20 @@
         100% {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+    @keyframes rectAni {
+        0% {
+            stroke-dashoffset: 380;
+            stroke-dasharray: 20, 20, 20, 600;
+        }
+        50% {
+            stroke-dashoffset: 190;
+            stroke-dasharray: 20, 20, 20, 300;
+        }
+        100% {
+            stroke-dashoffset: 0;
+            stroke-dasharray: 360;
         }
     }
 }

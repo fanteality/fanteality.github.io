@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Cookie from 'js-cookie';
 import Gl from './canvas';
 import './index.scss';
 var arr: any = [];
 const jinrishici = require('jinrishici');
+const { useEffect, useRef, useState, useCallback } = React;
 export default withRouter((props) => {
     const canvas: React.MutableRefObject<any> = useRef();
     const [c, setCn] = useState<CanvasRenderingContext2D>();
-    const [scale, setScale] = useState(0);
-    const [poem, setPoem] = useState('');
+    const [scale, setScale] = useState<number>(0);
+    const [poem, setPoem] = useState<string>('');
+    const [textY, setTextY] = useState<number>(-20);
+    const radiusMax: number = Math.sqrt(Math.pow(window.innerWidth / 2, 2) + Math.pow(window.innerHeight / 2, 2));
     const anim = useCallback(() => {
         window.requestAnimationFrame(anim);
         if (c) {
@@ -30,7 +32,6 @@ export default withRouter((props) => {
             anim();
         }
     }, [c, anim]);
-
     useEffect(() => {
         let cn = canvas.current;
         cn.height = window.innerHeight;
@@ -40,38 +41,41 @@ export default withRouter((props) => {
         render();
     }, [render]);
     useEffect(() => {
-        if (!poem) {
-            // 加载生成诗词
-            jinrishici.load((result: any) => {
-                let { status, data } = result;
-                if (status === 'success') {
-                    setPoem(data.content);
-                } else {
-                    setPoem('吟诗失败');
-                }
-            });
-        }
+        !poem &&
+            getPoem() &&
+            window.setTimeout(() => {
+                handleAnimation(setTextY, 0.05, 24, 2);
+            }, 800);
     }, [poem]);
+    // 加载生成诗词
+    function getPoem(): boolean {
+        jinrishici.load((result: any) => {
+            let { status, data } = result;
+            if (status === 'success') {
+                setPoem(data.content);
+            } else {
+                setPoem('吟诗失败');
+            }
+        });
+        return true;
+    }
     // 随机生成描边颜色
     function gc(): string {
-        let s = '0123456789ABCDEF';
-        let c = '#';
+        let str = '0123456789ABCDEF';
+        let color = '#';
         for (let i = 0; i < 6; i++) {
-            c += s[Math.ceil(Math.random() * 15)];
+            color += str[Math.ceil(Math.random() * 15)];
         }
-        return c;
+        return color;
     }
-    // 点击切换至首页
-    function toHome(speed: number) {
-        let radiusMax = Math.sqrt(Math.pow(window.innerWidth / 2, 2) + Math.pow(window.innerHeight / 2, 2));
-        let t = window.setInterval(() => {
-            setScale((n) => {
-                if (n < radiusMax) {
-                    return n + ((radiusMax - n) * speed) / 2;
+    function handleAnimation(callback: Function, speed: number, target: number, smooth: number): void {
+        let t = setInterval(() => {
+            callback((n: number) => {
+                if (n < target - smooth) {
+                    return n + ((target - n) * speed) / 2;
                 }
                 clearInterval(t);
-                Cookie.set('hideBanner', 'true', { expires: 7 });
-                return n;
+                return target;
             });
         }, 10);
     }
@@ -83,10 +87,17 @@ export default withRouter((props) => {
                 <div
                     className="blog_banner_btn"
                     onClick={() => {
-                        toHome(0.06);
+                        handleAnimation(setScale, 0.06, radiusMax, 1);
                     }}
                 >
-                    点击进入
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="48" viewBox="0 0 100 48" version="1.2">
+                        <rect rx="10" ry="10" stroke="#a8a8a8" strokeWidth="2" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="48" viewBox="0 0 100 48" version="1.2">
+                        <text fill="#fff" x="50%" y="50%" textAnchor="middle" dominantBaseline="central">
+                            点击进入
+                        </text>
+                    </svg>
                 </div>
             </div>
             <div className="blog_banner_circle">
