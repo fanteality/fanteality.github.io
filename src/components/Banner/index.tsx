@@ -10,7 +10,7 @@ export default withRouter((props) => {
     const [c, setCn] = useState<CanvasRenderingContext2D>();
     const [scale, setScale] = useState<number>(0);
     const [poem, setPoem] = useState<string>('');
-    const [textY, setTextY] = useState<number>(-20);
+    const [showBtn, setShowBtn] = useState<boolean>(true);
     const radiusMax: number = Math.sqrt(Math.pow(window.innerWidth / 2, 2) + Math.pow(window.innerHeight / 2, 2));
     const anim = useCallback(() => {
         window.requestAnimationFrame(anim);
@@ -41,11 +41,7 @@ export default withRouter((props) => {
         render();
     }, [render]);
     useEffect(() => {
-        !poem &&
-            getPoem() &&
-            window.setTimeout(() => {
-                handleAnimation(setTextY, 0.05, 24, 2);
-            }, 800);
+        !poem && getPoem();
     }, [poem]);
     // 加载生成诗词
     function getPoem(): boolean {
@@ -68,38 +64,43 @@ export default withRouter((props) => {
         }
         return color;
     }
-    function handleAnimation(callback: Function, speed: number, target: number, smooth: number): void {
+    function handleAnimation(action: Function, speed: number, target: number, smooth: number, callback?: Function): void {
         let t = setInterval(() => {
-            callback((n: number) => {
+            action((n: number) => {
                 if (n < target - smooth) {
                     return n + ((target - n) * speed) / 2;
                 }
                 clearInterval(t);
+                callback && callback();
                 return target;
             });
         }, 10);
     }
+    // 进入博客首页
+    function toIndex() {
+        setShowBtn(false);
+        handleAnimation(setScale, 0.06, radiusMax, 1, () => {
+            window.sessionStorage.setItem('hideBanner', 'true');
+        });
+    }
     return (
         <div className="blog_banner">
             <canvas ref={canvas}>你的浏览器不支持canvas，请更换为Chrome打开</canvas>
-            <div className="blog_banner_text">
-                <p>{poem}</p>
-                <div
-                    className="blog_banner_btn"
-                    onClick={() => {
-                        handleAnimation(setScale, 0.06, radiusMax, 1);
-                    }}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="48" viewBox="0 0 100 48" version="1.2">
-                        <rect rx="10" ry="10" stroke="#a8a8a8" strokeWidth="2" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="48" viewBox="0 0 100 48" version="1.2">
-                        <text fill="#fff" x="50%" y="50%" textAnchor="middle" dominantBaseline="central">
-                            点击进入
-                        </text>
-                    </svg>
+            {showBtn && (
+                <div className="blog_banner_text">
+                    <p>{poem}</p>
+                    <div className="blog_banner_btn" onClick={toIndex}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="48" viewBox="0 0 100 48" version="1.2">
+                            <rect rx="10" ry="10" stroke="#a8a8a8" strokeWidth="2" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="48" viewBox="0 0 100 48" version="1.2">
+                            <text fill="#fff" x="50%" y="50%" textAnchor="middle" dominantBaseline="central">
+                                点击进入
+                            </text>
+                        </svg>
+                    </div>
                 </div>
-            </div>
+            )}
             <div className="blog_banner_circle">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
                     <circle cx={window.innerWidth / 2} cy={window.innerHeight / 2} r={scale} fill="#fff" />
