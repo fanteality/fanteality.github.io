@@ -6,7 +6,7 @@ import PageLoading from 'components/PageLoading';
 import allPages from '../page';
 export default () => {
     return (
-        <React.Suspense fallback={<PageLoading/>}>
+        <React.Suspense fallback={<PageLoading />}>
             <Switch>
                 {routeConfig.map((ele: IFMenu, index: number) => {
                     return (
@@ -14,11 +14,11 @@ export default () => {
                             exact
                             key={index}
                             path={ele.path}
-                            render={props => {
+                            render={(props) => {
                                 const Component = allPages[ele.component];
                                 const WrapComponent = (
                                     <DocumentTitle title={ele.title}>
-                                        <Component {...props}/>
+                                        <Component {...props} />
                                     </DocumentTitle>
                                 );
                                 return WrapComponent;
