@@ -3,11 +3,11 @@ import './index.scss';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 const NavBar = (props: RouteComponentProps) => {
     const [navList, setList] = useState<string[]>([]);
+    let hideBanner = window.sessionStorage.getItem('hideBanner');
     useEffect(() => {
         setList(['首页', 'HTML', 'CSS', 'React']);
     }, []);
-    let { pathname = '' } = props.history.location;
-    return pathname === '/' ? null : (
+    return hideBanner ? (
         <div className="blog_navbar">
             {navList.map((ele, index) => (
                 <div className="blog_navbar-item" key={index}>
@@ -15,6 +15,6 @@ const NavBar = (props: RouteComponentProps) => {
                 </div>
             ))}
         </div>
-    );
+    ) : null;
 };
 export default withRouter(NavBar) as any;
