@@ -1,11 +1,15 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import Gl from './canvas';
 import './index.scss';
 var arr: any = [];
 const jinrishici = require('jinrishici');
 const { useEffect, useRef, useState, useCallback } = React;
-export default withRouter((props) => {
+
+interface BannerProps extends RouteComponentProps {
+    freshIndex: Function;
+}
+export default withRouter((props: BannerProps) => {
     const canvas: React.MutableRefObject<any> = useRef();
     const [c, setCn] = useState<CanvasRenderingContext2D>();
     const [scale, setScale] = useState<number>(0);
@@ -81,6 +85,7 @@ export default withRouter((props) => {
         setShowBtn(false);
         handleAnimation(setScale, 0.06, radiusMax, 1, () => {
             window.sessionStorage.setItem('hideBanner', 'true');
+            props.freshIndex();
         });
     }
     return (
