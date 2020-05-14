@@ -47,6 +47,12 @@ export default withRouter((props: BannerProps) => {
     useEffect(() => {
         !poem && getPoem();
     }, [poem]);
+    // 监听动画
+    useEffect(() => {
+        if (scale === radiusMax) {
+            props.freshIndex();
+        }
+    }, [scale, radiusMax, props]);
     // 加载生成诗词
     function getPoem(): boolean {
         jinrishici.load((result: any) => {
@@ -75,7 +81,6 @@ export default withRouter((props: BannerProps) => {
                     return n + ((target - n) * speed) / 2;
                 }
                 clearInterval(t);
-                callback && callback();
                 return target;
             });
         }, 10);
@@ -83,10 +88,7 @@ export default withRouter((props: BannerProps) => {
     // 进入博客首页
     function toIndex() {
         setShowBtn(false);
-        handleAnimation(setScale, 0.06, radiusMax, 1, () => {
-            window.sessionStorage.setItem('hideBanner', 'true');
-            props.freshIndex();
-        });
+        handleAnimation(setScale, 0.06, radiusMax, 1);
     }
     return (
         <div className="blog_banner">

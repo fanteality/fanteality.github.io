@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import Banner from 'components/Banner';
-export default () => {
-    let hideBanner = window.sessionStorage.getItem('hideBanner') || '';
-    const [hide, setHide] = useState<string>('');
-    useEffect(() => {
-        setHide(hideBanner);
-    }, [hideBanner]);
-    // 刷新页面隐藏Banner
-    function freshIndex(): void {
-        setHide('true');
+
+interface HomeState {
+    fresh: boolean;
+}
+export default class Home extends Component<any, HomeState> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            fresh: false,
+        };
     }
-    return <div className="blog_home">{hide ? <div className="blog_home_content">这是首页</div> : <Banner freshIndex={freshIndex} />}</div>;
-};
+    freshIndex(): void {
+        window.sessionStorage.setItem('hideBanner', 'true');
+        this.setState({
+            fresh: true,
+        });
+    }
+    render() {
+        let { fresh } = this.state;
+        // let hideBanner = window.sessionStorage.getItem('hideBanner') || '';
+        return <div className="blog_home">{fresh ? <div className="blog_home_content">这是首页</div> : <Banner freshIndex={() => this.freshIndex()}></Banner>}</div>;
+    }
+}
