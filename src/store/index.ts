@@ -1,5 +1,5 @@
-import HideBanner from './hideBanner';
-const hideBanner: object = new HideBanner();
+import hideBanner from './hideBanner';
+
 const store = {
     hideBanner
 };

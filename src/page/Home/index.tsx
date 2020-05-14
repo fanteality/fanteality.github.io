@@ -2,24 +2,18 @@ import React, { Component } from 'react';
 import Banner from 'components/Banner';
 
 interface HomeState {
-    fresh: boolean;
+    name: string;
 }
 export default class Home extends Component<any, HomeState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            fresh: false,
+            name: 'home',
         };
     }
-    freshIndex(): void {
-        window.sessionStorage.setItem('hideBanner', 'true');
-        this.setState({
-            fresh: true,
-        });
-    }
     render() {
-        let { fresh } = this.state;
-        // let hideBanner = window.sessionStorage.getItem('hideBanner') || '';
-        return <div className="blog_home">{fresh ? <div className="blog_home_content">这是首页</div> : <Banner freshIndex={() => this.freshIndex()}></Banner>}</div>;
+        let { fresh } = this.props;
+        let hideBanner = window.sessionStorage.getItem('hideBanner') || '';
+        return <div className="blog_home">{fresh || hideBanner ? <div className="blog_home_content">这是首页</div> : <Banner></Banner>}</div>;
     }
 }

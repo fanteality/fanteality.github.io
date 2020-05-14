@@ -1,8 +1,8 @@
 import { observable, action } from 'mobx';
 class HideBanner {
-    @observable hide: string | null = 'hrfjh';
-    @action logIn(hide: string) {
+    @observable public hide: string | null = null;
+    @action setHide(hide: string): void {
         this.hide = hide;
     }
 }
-export default HideBanner;
+export default new HideBanner();
