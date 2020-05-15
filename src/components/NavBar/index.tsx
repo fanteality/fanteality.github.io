@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './index.scss';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import './index.scss';
 const NavBar = (props: RouteComponentProps) => {
     const [navList, setList] = useState<string[]>([]);
     const hideBanner = window.sessionStorage.getItem('hideBanner') || '';
@@ -10,9 +10,7 @@ const NavBar = (props: RouteComponentProps) => {
     return hideBanner ? (
         <div className="blog_navbar">
             {navList.map((ele, index) => (
-                <div className="blog_navbar_item" key={index}>
-                    {ele}
-                </div>
+                <div className="blog_navbar_item" key={index}>{ele}</div>
             ))}
         </div>
     ) : null;
