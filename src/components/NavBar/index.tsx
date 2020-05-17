@@ -5,7 +5,7 @@ const NavBar = (props: RouteComponentProps) => {
     const [navList, setList] = useState<string[]>([]);
     const hideBanner = window.sessionStorage.getItem('hideBanner') || '';
     useEffect(() => {
-        setList(['首页', 'HTML', 'CSS', 'React']);
+        setList(['首页', '前端', 'Java', '优站推荐']);
     }, []);
     return hideBanner ? (
         <div className="blog_navbar">
