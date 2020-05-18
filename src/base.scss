@@ -3,6 +3,8 @@ p {
 }
 body {
     color: #575757;
+    min-width: 1200px;
+    background-color: #ececec;
     font-family: Microsoft JhengHei;
 }
 // 文本无法选择复制
@@ -12,4 +14,10 @@ body {
 // 文本内容为英文
 .english {
     font-family: microsoft yahei;
+}
+.content {
+    width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #fff;
 }
