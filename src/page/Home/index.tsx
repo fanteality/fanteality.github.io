@@ -16,17 +16,6 @@ export default class Home extends Component<any, HomeState> {
     render() {
         let { fresh } = this.props;
         let hideBanner = window.sessionStorage.getItem('hideBanner') || '';
-        return (
-            <div className="blog_home">
-                {fresh || hideBanner ? (
-                    <div className="blog_home_content">
-                        <Item />
-                        <MotionEle />
-                    </div>
-                ) : (
-                    <Banner></Banner>
-                )}
-            </div>
-        );
+        return <div className="blog_home">{fresh || hideBanner ? <div className="blog_home_content"></div> : <Banner></Banner>}</div>;
     }
 }

@@ -22,7 +22,7 @@ export default (props: { hide: string | null }) => {
                                 const Component = allPages[ele.component];
                                 props = { hide, ...props };
                                 const WrapComponent = (
-                                    <DocumentTitle title={ele.title}>
+                                    <DocumentTitle title={"fanteality的个人博客 | "+ele.title}>
                                         <Component {...props} />
                                     </DocumentTitle>
                                 );

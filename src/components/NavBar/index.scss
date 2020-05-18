@@ -1,3 +1,4 @@
+@import '../../config.scss';
 .blog_navbar {
     top: 0;
     left: 0;
@@ -7,8 +8,19 @@
     display: flex;
     position: sticky;
     align-items: center;
-    font-size: 24px;;
+    font-size: 21px;
+    font-weight: 700;
+    overflow: hidden;
     justify-content: center;
     background-color: #171f26;
     box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.3);
+
+    @for $i from 0 through 4 {
+        &_item_#{$i} {
+            cursor: pointer;
+            padding: 0 15px;
+            margin: 0 20px;
+            @include moveAni(Y, 40px, 0, 0.2 * $i);
+        }
+    }
 }

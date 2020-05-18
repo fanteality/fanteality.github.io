@@ -1,10 +1,15 @@
 p {
     margin: 0;
 }
+body {
+    color: #575757;
+    font-family: Microsoft JhengHei;
+}
+// 文本无法选择复制
 .noselect {
     user-select: none;
 }
-body{
-    color: #575757;
-    font-family: Microsoft JhengHei;
+// 文本内容为英文
+.english {
+    font-family: microsoft yahei;
 }
