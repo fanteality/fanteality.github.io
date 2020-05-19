@@ -9,12 +9,15 @@ const NavBar = (props: RouteComponentProps) => {
     }, []);
     return hideBanner ? (
         <div className="blog_navbar">
-            {navList.map((ele, index) => (
-                <div className={'blog_navbar_item_' + index} key={index}>
-                    {ele}
-                    <i className="hover_line"></i>
-                </div>
-            ))}
+            <div className="blog_navbar_content">
+                <img src={require("./img/logo.png")} alt=""/>
+                {navList.map((ele, index) => (
+                    <div className={'blog_navbar_item_' + index} key={index}>
+                        {ele}
+                        <i className="hover_line"></i>
+                    </div>
+                ))}
+            </div>
         </div>
     ) : null;
 };

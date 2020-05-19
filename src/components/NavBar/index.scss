@@ -5,14 +5,25 @@
     color: #fff;
     width: 100%;
     height: 60px;
-    display: flex;
     position: sticky;
     font-size: 21px;
     font-weight: 700;
     overflow: hidden;
-    justify-content: center;
     background-color: #171f26;
     box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.3);
+    &_content {
+        width: 1200px;
+        display: flex;
+        margin: 0 auto;
+        position: relative;
+        justify-content: center;
+        > img {
+            left: 0;
+            top: 5px;
+            height: 50px;
+            position: absolute;
+        }
+    }
     @for $i from 0 through 4 {
         &_item_#{$i} {
             height: 100%;
@@ -23,6 +34,7 @@
             position: relative;
             @include moveAni(Y, 40px, 0, 0.2 * $i);
             &:hover {
+                color: #57aeff;
                 .hover_line {
                     width: 100%;
                     height: 3px;

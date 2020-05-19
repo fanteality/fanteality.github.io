@@ -17,9 +17,7 @@ export default class App extends Component<Iprops, {}> {
             <div className="blog">
                 <Router>
                     <Navbar />
-                    <div className="content">
-                        <RoutePart hide={hide} />
-                    </div>
+                    <RoutePart hide={hide} />
                 </Router>
             </div>
         );
