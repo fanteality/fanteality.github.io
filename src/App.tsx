@@ -3,7 +3,7 @@ import RoutePart from './route';
 import { observer, inject } from 'mobx-react';
 import { HideBanner } from './store/type';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from 'components/NavBar';
+
 
 interface Iprops {
     hideBanner?: HideBanner;
@@ -16,7 +16,6 @@ export default class App extends Component<Iprops, {}> {
         return (
             <div className="blog">
                 <Router>
-                    <Navbar />
                     <RoutePart hide={hide} />
                 </Router>
             </div>
