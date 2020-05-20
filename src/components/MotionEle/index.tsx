@@ -1,16 +1,19 @@
 import React, { ReactElement } from 'react';
-import { Motion, spring } from 'react-motion';
+import { Motion, spring, presets } from 'react-motion';
 interface Iprop {
     className?: string;
-    x: number;
+    attrname: string;
+    startValue: number;
+    targetValue: number;
     children: ReactElement | string;
 }
 export default (props: Iprop) => {
-    const { className = '', children, x } = props;
+    const { className = '', children, attrname, startValue, targetValue } = props;
+
     return (
-        <Motion defaultStyle={{ x }} style={{ x: spring(0) }}>
+        <Motion defaultStyle={{ motion: startValue }} style={{ motion: spring(targetValue, presets.wobbly) }}>
             {(value) => (
-                <div className={className} style={{ transform: `translateY(${value.x}px)` }}>
+                <div className={className} style={{ transform: `${attrname}(${value.motion})` }}>
                     {children}
                 </div>
             )}

@@ -12,20 +12,25 @@
     background-color: #171f26;
     font-family: Microsoft JhengHei;
     box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.3);
-    animation: fadeIn .8s backwards;
+    animation: fadeIn 1s backwards;
     &_content {
         width: 1200px;
         display: flex;
         margin: 0 auto;
         position: relative;
         justify-content: center;
-        > img {
-            left: 0;
-            top: 5px;
-            height: 50px;
-            cursor: pointer;
-            position: absolute;
-            animation: scaleAni 0.6s ease-in-out 1.3s backwards;
+    }
+    &_logo {
+        left: 0;
+        top: 5px;
+        height: 50px;
+        cursor: pointer;
+        position: absolute;
+        &:hover {
+            animation: rotateAni 0.8s linear infinite;
+        }
+        img {
+            height: 100%;
         }
     }
     @for $i from 0 through 4 {
@@ -57,25 +62,19 @@
         transition: all 0.2s;
     }
 }
-@keyframes scaleAni {
-    0% {
-        transform: scale(0);
-    }
-    75% {
-        transform: scale(1.2);
-    }
-    90% {
-        transform: scale(0.8);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
+    }
+}
+@keyframes rotateAni {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
