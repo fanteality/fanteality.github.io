@@ -4,7 +4,6 @@ p {
 body {
     color: #575757;
     min-width: 1200px;
-    background-color: #ececec;
 }
 // 文本无法选择复制
 .noselect {
@@ -13,6 +12,7 @@ body {
 
 .content {
     width: 1200px;
-    margin: 0 auto;
-    background-color: #fff;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
 }

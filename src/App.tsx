@@ -8,6 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 interface Iprops {
     hideBanner?: HideBanner;
 }
+
 @inject('hideBanner')
 @observer
 export default class App extends Component<Iprops, {}> {

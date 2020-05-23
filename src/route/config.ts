@@ -7,11 +7,10 @@ export interface IFMenu {
 // 路由表配置
 export const routeConfig: IFMenu[] = [
     { title: '首页', path: '/', component: 'Home' },
-    { title: 'CSS', path: '/FrontEnd/CSS', component: 'CSS' },
+    { title: 'CSS', path: '/FrontEnd/Css', component: 'Css' },
     { title: 'React', path: '/FrontEnd/React', component: 'React' },
     { title: 'Node', path: '/FrontEnd/Node', component: 'Node' },
     { title: 'Java', path: '/Java', component: 'Java' },
     { title: '优站收藏', path: '/GoodSites', component: 'GoodSites' },
     { title: '杂七杂八', path: '/Others', component: 'Others' },
-   
 ];

@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import MotionEle from 'components/MotionEle';
 import DelayWrap from 'components/DelayWrap';
+import { indexHot } from '../../utils/http';
+import logo from './img/logo.png';
 import './index.scss';
 
 const NavBar = (props: RouteComponentProps) => {
     const [navList, setList] = useState<string[]>([]);
     const hideBanner = window.sessionStorage.getItem('hideBanner');
     useEffect(() => {
+        indexHot()
+            .then((res) => {
+                console.log(res[0]);
+            })
+            .catch((err) => {
+                console.log(2222, err);
+            });
         setList(['首页', '前端', 'Java', '优站收藏', '杂七杂八']);
     }, []);
 
@@ -16,7 +25,7 @@ const NavBar = (props: RouteComponentProps) => {
             <div className="blog_navbar_content">
                 <DelayWrap delay={1400}>
                     <MotionEle className="blog_navbar_logo" attrname="scale" startValue={0} targetValue={1}>
-                        <img onClick={() => props.history.push('/')} src={require('./img/logo.png')} alt="" />
+                        <img onClick={() => props.history.push('/')} src={logo} alt="" />
                     </MotionEle>
                 </DelayWrap>
                 {navList.map((ele, index) => (

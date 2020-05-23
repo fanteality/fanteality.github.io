@@ -1,5 +1,13 @@
 .blog_item {
-  &_title{
-    
-  }
+    width: 850px;
+    min-height: 120px;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #cecece;
+    &_title {
+       font-size: 24px;
+       font-weight: 700;
+       margin-bottom: 20px
+    }
 }
