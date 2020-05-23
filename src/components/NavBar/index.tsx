@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import MotionEle from 'components/MotionEle';
 import DelayWrap from 'components/DelayWrap';
+import Toast from 'components/Toast';
 import { indexHot } from '../../utils/http';
 import logo from './img/logo.png';
 import './index.scss';
@@ -12,7 +13,7 @@ const NavBar = (props: RouteComponentProps) => {
     useEffect(() => {
         indexHot()
             .then((res) => {
-                console.log(res[0]);
+                Toast.info("info",1000)
             })
             .catch((err) => {
                 console.log(2222, err);
