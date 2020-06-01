@@ -9,7 +9,7 @@ import allPages from '../page';
 interface Iprop extends RouteComponentProps {
     hide?: string | null;
 }
-export default (props: { hide: string | null }) => {
+export default (props: { hide?: string | null }) => {
     let { hide } = props;
     let hideBanner = window.sessionStorage.getItem('hideBanner') || '';
     return (
