@@ -1,13 +1,15 @@
 .blog_item {
-    width: 850px;
+    width: 80%;
     min-height: 120px;
     border-radius: 10px;
     padding: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
     box-sizing: border-box;
-    background-color: #cecece;
+    border-bottom: 2px dashed #cecece;
     &_title {
-       font-size: 24px;
-       font-weight: 700;
-       margin-bottom: 20px
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
     }
 }

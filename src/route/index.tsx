@@ -14,8 +14,9 @@ export default (props: { hide?: string | null }) => {
     let hideBanner = window.sessionStorage.getItem('hideBanner') || '';
     return (
         <React.Fragment>
-            <Navbar />
+            <SideBar />
             <div className={hideBanner ? 'blog_content content' : 'blog_content'}>
+                <Navbar />
                 <React.Suspense fallback={<PageLoading />}>
                     <Switch>
                         {routeConfig.map((ele: IFMenu, index: number) => {
@@ -39,7 +40,6 @@ export default (props: { hide?: string | null }) => {
                         })}
                     </Switch>
                 </React.Suspense>
-                <SideBar />
             </div>
         </React.Fragment>
     );

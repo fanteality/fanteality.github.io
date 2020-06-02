@@ -1,14 +1,16 @@
 .blog_sidebar {
-    width: 300px;
-    height: 300px;
+    width: 20%;
     display: flex;
     padding: 40px;
+    min-height: 100vh;
     align-items: center;
     box-sizing: border-box;
     flex-direction: column;
-    &_avatar{
+    justify-content: center;
+    border-right: 1px dashed #dadada;
+    &_avatar {
         overflow: hidden;
         border-radius: 50%;
-        border: 1px dashed #888; 
+        border: 1px dashed #888;
     }
 }

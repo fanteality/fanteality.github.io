@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import Banner from 'components/Banner';
 import Item from 'components/Item';
 import MotionEle from 'components/MotionEle';
+import { indexHot } from '../../utils/http';
 import './index.scss';
 interface HomeState {
     name: string;
-    data: number[];
+    data: any[];
 }
 export default class Home extends Component<any, HomeState> {
     constructor(props: any) {
         super(props);
         this.state = {
             name: 'home',
-            data: [0],
+            data: [],
         };
+    }
+    async componentDidMount() {
+        let res = await indexHot();
+        this.setState({
+            data: res,
+        });
     }
     render() {
         let { fresh } = this.props;
@@ -23,7 +30,7 @@ export default class Home extends Component<any, HomeState> {
                 {fresh || hideBanner ? (
                     <>
                         {this.state.data.map((ele, index) => (
-                            <Item key={index} />
+                            <Item key={index} data={ele} />
                         ))}
                     </>
                 ) : (

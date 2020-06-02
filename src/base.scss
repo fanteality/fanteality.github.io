@@ -3,16 +3,14 @@ p {
 }
 body {
     color: #575757;
-    min-width: 1200px;
 }
 // 文本无法选择复制
 .noselect {
     user-select: none;
 }
-
-.content {
-    width: 1200px;
-    margin: 30px auto;
+.blog {
     display: flex;
-    justify-content: space-between;
+}
+.blog_content {
+    width: 80%;
 }

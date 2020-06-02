@@ -4,7 +4,6 @@ import { observer, inject } from 'mobx-react';
 import { HideBanner } from './store/type';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-
 interface Iprops {
     hideBanner?: HideBanner;
 }
