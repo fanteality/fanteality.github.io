@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import MotionEle from 'components/MotionEle';
-// import DelayWrap from 'components/DelayWrap';
 // import Toast from 'components/Toast';
 
-// import logo from './img/logo.png';
 import './index.scss';
 
 const NavBar = (props: RouteComponentProps) => {
@@ -24,11 +22,6 @@ const NavBar = (props: RouteComponentProps) => {
                         </>
                     </MotionEle>
                 ))}
-                {/* <DelayWrap delay={1000}>
-                    <MotionEle className="blog_navbar_logo" attrname="scale" startValue={0} targetValue={1}>
-                        <img onClick={() => props.history.replace('/')} src={logo} alt="" />
-                    </MotionEle>
-                </DelayWrap> */}
             </div>
         </div>
     ) : null;

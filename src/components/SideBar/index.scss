@@ -9,8 +9,41 @@
     justify-content: center;
     border-right: 1px dashed #dadada;
     &_avatar {
-        overflow: hidden;
-        border-radius: 50%;
-        border: 1px dashed #888;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+        border-radius: 40px;
+        position: relative;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .border {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            position: absolute;
+            border: 1px dashed #000;
+        }
+        &:hover .border {
+            animation: scaleAni 1.2s ease-in-out infinite both;
+        }
+    }
+}
+
+@keyframes scaleAni {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50%{
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }

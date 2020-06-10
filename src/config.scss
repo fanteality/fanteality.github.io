@@ -1,11 +1,1 @@
-@mixin moveAni($direction, $start, $end, $delay) {
-    @keyframes move {
-        0% {
-            transform: #{$direction + '(' + $start + ')'};
-        }
-        100% {
-            transform: #{$direction + '(' + $end + ')'};
-        }
-    }
-    animation: move 0.5s ease-in-out #{$delay}s both;
-}
+

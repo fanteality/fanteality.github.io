@@ -3,7 +3,7 @@ import { Motion, spring, presets } from 'react-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 interface Iprop {
-    className: string;
+    className?: string;
     aosOption?: {
         name: string;
         delay?: number;
@@ -11,7 +11,7 @@ interface Iprop {
     attrname?: string;
     startValue?: number;
     targetValue?: number;
-    children: ReactElement | string;
+    children: ReactElement | string | ReactElement[];
 }
 export default (props: Iprop) => {
     const { className = '', children, attrname, startValue = 0, targetValue = 0, aosOption } = props;
@@ -30,11 +30,13 @@ export default (props: Iprop) => {
     } else {
         ele = (
             <Motion defaultStyle={{ motion: startValue }} style={{ motion: spring(targetValue, presets.wobbly) }}>
-                {(value) => (
-                    <div className={className} style={{ transform: `${attrname}(${value.motion})` }}>
-                        {children}
-                    </div>
-                )}
+                {(value) => {
+                    return (
+                        <div className={className} style={{ transform: `${attrname}(${value.motion})` }}>
+                            {children}
+                        </div>
+                    )
+                }}
             </Motion>
         );
     }

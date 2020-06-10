@@ -1,10 +1,11 @@
 .blog_item {
     width: 80%;
+    padding: 20px;
     min-height: 120px;
     border-radius: 10px;
-    padding: 20px;
     margin-top: 20px;
     margin-left: 20px;
+    cursor: pointer;
     box-sizing: border-box;
     border-bottom: 2px dashed #cecece;
     &_title {

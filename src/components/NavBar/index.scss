@@ -19,19 +19,6 @@
         position: relative;
         justify-content: left;
     }
-    &_logo {
-        right: 20px;
-        top: 5px;
-        height: 50px;
-        cursor: pointer;
-        position: absolute;
-        &:hover {
-            animation: rotateAni 0.8s linear infinite;
-        }
-        img {
-            height: 100%;
-        }
-    }
     &_item {
         height: 100%;
         cursor: pointer;
