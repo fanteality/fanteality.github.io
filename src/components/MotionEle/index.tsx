@@ -12,9 +12,10 @@ interface Iprop {
     startValue?: number;
     targetValue?: number;
     children: ReactElement | string | ReactElement[];
+    handleClick?: () => void;
 }
 export default (props: Iprop) => {
-    const { className = '', children, attrname, startValue = 0, targetValue = 0, aosOption } = props;
+    const { className = '', children, attrname, startValue = 0, targetValue = 0, aosOption, handleClick } = props;
 
     useEffect(() => {
         AOS.init();
@@ -32,10 +33,10 @@ export default (props: Iprop) => {
             <Motion defaultStyle={{ motion: startValue }} style={{ motion: spring(targetValue, presets.wobbly) }}>
                 {(value) => {
                     return (
-                        <div className={className} style={{ transform: `${attrname}(${value.motion})` }}>
+                        <div onClick={handleClick} className={className} style={{ transform: `${attrname}(${value.motion})` }}>
                             {children}
                         </div>
-                    )
+                    );
                 }}
             </Motion>
         );

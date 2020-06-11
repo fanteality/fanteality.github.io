@@ -5,7 +5,7 @@ export default () => {
     const hideBanner = window.sessionStorage.getItem('hideBanner') || '';
     return hideBanner ? (
         <div className="blog_sidebar">
-            <MotionEle className="blog_sidebar_avatar" attrname="scale" startValue={0} targetValue={1}>
+            <MotionEle handleClick={() => window.open('https://github.com/fanteality')} className="blog_sidebar_avatar" attrname="scale" startValue={0} targetValue={1}>
                 <>
                     <img src={require('./img/avatar.png')} alt="" />
                     <i className="border"></i>
