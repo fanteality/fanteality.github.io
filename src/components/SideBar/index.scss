@@ -1,7 +1,6 @@
 .blog_sidebar {
     width: 20%;
     display: flex;
-    padding: 40px;
     min-height: 100vh;
     align-items: center;
     box-sizing: border-box;
@@ -14,7 +13,7 @@
         cursor: pointer;
         border-radius: 40px;
         position: relative;
-        img{
+        img {
             width: 100%;
             height: 100%;
         }
@@ -31,6 +30,22 @@
             animation: scaleAni 1.2s ease-in-out infinite both;
         }
     }
+    &_link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 20px 0 60px;
+        justify-content: center;
+        .icon{
+            margin: 0 10px;
+        }
+    }
+    &_rights{
+        color:#a8a8a8;
+        font-size: 12px;
+        text-align: center;
+        line-height: 1.5;
+    }
 }
 
 @keyframes scaleAni {
@@ -38,7 +53,7 @@
         opacity: 1;
         transform: scale(1);
     }
-    50%{
+    50% {
         opacity: 0.5;
         transform: scale(1.2);
     }

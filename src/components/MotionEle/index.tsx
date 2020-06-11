@@ -22,7 +22,7 @@ export default (props: Iprop) => {
     }, []);
     let ele: ReactElement;
     if (aosOption) {
-        const { name, delay = 1000 } = aosOption;
+        const { name="", delay = 1000 } = aosOption;
         ele = (
             <div className={className} data-aos={name} data-aos-delay={delay}>
                 {children}

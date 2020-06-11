@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { HideBanner } from '../../store/type';
 import Gl from './canvas';
 import './index.scss';
-var arr: any = [];
+var arr: Gl[] = [];
 const jinrishici = require('jinrishici');
 const { useEffect, useRef, useState, useCallback } = React;
 

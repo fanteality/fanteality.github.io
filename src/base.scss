@@ -13,5 +13,15 @@ body {
 }
 .blog_content {
     width: 80%;
-    
+}
+//iconfont图标样式
+.icon {
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    cursor: pointer;
+    vertical-align: -0.15em;
+    &:hover {
+        fill: #333!important;
+    }
 }
