@@ -8,12 +8,10 @@ import './base.scss';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <Provider {...store}>
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
-    </Provider>,
-    document.getElementById('root')
+  <Provider {...store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
