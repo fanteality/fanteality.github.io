@@ -30,25 +30,27 @@ const NavBar = (props: RouteComponentProps) => {
     { menu: '杂七杂八' },
   ];
   const [subIdx, setSubIdx] = useState<number | null>(null);
+  const hideBanner = window.sessionStorage.getItem('hideBanner');
   useEffect(() => {
     let navDomArr: NodeListOf<Element> = document.querySelectorAll('.blog_navbar_item');
-    for (let i = 0; i < navDomArr.length; i++) {
-      navDomArr[i].addEventListener('mouseenter', function () {
-        setSubIdx(() => i);
-      });
-      navDomArr[i].addEventListener('mouseleave', function () {
-        setSubIdx(() => null);
-      });
+    if (hideBanner) {
+      for (let i = 0; i < navDomArr.length; i++) {
+        navDomArr[i].addEventListener('mouseenter', function () {
+          setSubIdx(() => i);
+        });
+        navDomArr[i].addEventListener('mouseleave', function () {
+          setSubIdx(() => null);
+        });
+      }
     }
-  }, []);
+  }, [hideBanner]);
 
-  const hideBanner = window.sessionStorage.getItem('hideBanner');
   return hideBanner ? (
     <div className="blog_navbar">
       <div className="blog_navbar_content">
         {navList.map((ele, index) => {
           const subEle = (
-            <CSSTransition in={subIdx === index} timeout={800} unmountOnExit onExited={() => console.log(1)} classNames="alert">
+            <CSSTransition in={subIdx === index} timeout={800} unmountOnExit classNames="alert">
               <div className="blog_navbar_sub">
                 {ele.sub?.map((r: MenuProp, index: number) => (
                   <div className="blog_navbar_subitem" key={index}>
