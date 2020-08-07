@@ -7,8 +7,7 @@ interface Iprop {
   aosOption?: {
     name: string;
     delay?: number;
-  };
-  closeMotion?: boolean;
+  } | null;
   attrname?: string;
   startValue?: number;
   targetValue?: number;
@@ -16,7 +15,7 @@ interface Iprop {
   handleClick?: () => void;
 }
 export default (props: Iprop) => {
-  const { className = '', children, attrname, startValue = 0, targetValue = 0, aosOption, closeMotion = false, handleClick } = props;
+  const { className = '', children, attrname, startValue = 0, targetValue = 0, aosOption, handleClick } = props;
 
   useEffect(() => {
     AOS.init({
@@ -25,14 +24,15 @@ export default (props: Iprop) => {
   }, []);
 
   let ele: ReactElement;
-  if (closeMotion) {
-    ele = <div className={className}>{children}</div>;
-  } else {
-    ele = aosOption ? (
-      <div className={className} onClick={handleClick} data-aos={aosOption.name} data-aos-delay={aosOption.delay}>
+  if (aosOption) {
+    let { name = '', delay = 0 } = aosOption;
+    ele = (
+      <div className={className} onClick={handleClick} data-aos={name} data-aos-delay={delay}>
         {children}
       </div>
-    ) : (
+    );
+  } else {
+    ele = (
       <Motion defaultStyle={{ motion: startValue }} style={{ motion: spring(targetValue, presets.wobbly) }}>
         {(value) => {
           return (

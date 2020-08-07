@@ -48,8 +48,12 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
           setSubIdx(() => null);
         });
       }
+      window.sessionStorage.setItem('isNavRender', '1');
     }
   }, [hideBanner]);
+  function judgeMotion(path: string): boolean {
+    return location.pathname !== path && !window.sessionStorage.getItem('isNavRender');
+  }
   return hideBanner ? (
     <div className="blog_navbar">
       <div className="blog_navbar_content">
@@ -68,7 +72,7 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
           return (
             <MotionEle
               key={index}
-              aosOption={{ name: 'fade-up', delay: 300 + index * 150 }}
+              aosOption={judgeMotion(ele.path) ? { name: 'fade-up', delay: 300 + index * 150 } : null}
               className={classnames('noselect blog_navbar_item', { sel: location.pathname === ele.path })}
               handleClick={() => history.push(`${ele.path}`)}
             >

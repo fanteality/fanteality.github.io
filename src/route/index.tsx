@@ -1,6 +1,6 @@
 import React from 'react';
 import { routeConfig, IFMenu } from './config';
-import { Route, Switch, RouteComponentProps } from 'react-router-dom';
+import { Route, Switch, RouteComponentProps, Redirect } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 import PageLoading from 'components/PageLoading';
 import Navbar from 'components/NavBar';
@@ -28,6 +28,7 @@ export default (props: { hide?: string | null }) => {
                   key={index}
                   path={ele.path}
                   render={(props: Iprop) => {
+                    // if (!hideBanner) return <Redirect to="/" />;
                     const Component = allPages[ele.component];
                     props = { hide, ...props };
                     const WrapComponent = (
@@ -40,6 +41,7 @@ export default (props: { hide?: string | null }) => {
                 />
               );
             })}
+            <Redirect from="/*" to="/NotFound" />
           </Switch>
         </React.Suspense>
       </div>
