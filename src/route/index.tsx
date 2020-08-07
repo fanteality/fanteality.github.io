@@ -28,7 +28,6 @@ export default (props: { hide?: string | null }) => {
                   key={index}
                   path={ele.path}
                   render={(props: Iprop) => {
-                    // if (!hideBanner) return <Redirect to="/" />;
                     const Component = allPages[ele.component];
                     props = { hide, ...props };
                     const WrapComponent = (
@@ -41,6 +40,7 @@ export default (props: { hide?: string | null }) => {
                 />
               );
             })}
+            {!hideBanner && <Redirect to="/" />}
             <Redirect from="/*" to="/NotFound" />
           </Switch>
         </React.Suspense>
