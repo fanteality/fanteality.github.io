@@ -1,33 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import Icon from 'components/Icon';
+import classnames from 'classnames';
 import MotionEle from 'components/MotionEle';
 import { CSSTransition } from 'react-transition-group';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 import './index.scss';
 interface MenuProp {
   menu: string;
+  path: string;
   sub?: MenuProp[];
 }
-const NavBar = (props: RouteComponentProps) => {
+const NavBar = ({ history, location }: RouteComponentProps) => {
   const navList: MenuProp[] = [
-    { menu: '首页' },
+    { menu: '首页', path: '/' },
     {
       menu: '前端',
+      path: '/FrontEnd',
       sub: [
         {
           menu: 'Js',
+          path: '/FrontEnd/Js',
         },
         {
           menu: 'Css',
+          path: '/FrontEnd/Css',
         },
         {
           menu: 'React',
+          path: '/FrontEnd/React',
         },
       ],
     },
-    { menu: 'Java' },
-    { menu: '优站收藏' },
-    { menu: '杂七杂八' },
+    { menu: 'Java', path: '/Java' },
+    { menu: '优站收藏', path: '/TopSite' },
+    { menu: '兴趣百科', path: '/Mix' },
   ];
   const [subIdx, setSubIdx] = useState<number | null>(null);
   const hideBanner = window.sessionStorage.getItem('hideBanner');
@@ -44,7 +50,6 @@ const NavBar = (props: RouteComponentProps) => {
       }
     }
   }, [hideBanner]);
-
   return hideBanner ? (
     <div className="blog_navbar">
       <div className="blog_navbar_content">
@@ -53,15 +58,20 @@ const NavBar = (props: RouteComponentProps) => {
             <CSSTransition in={subIdx === index} timeout={800} unmountOnExit classNames="alert">
               <div className="blog_navbar_sub">
                 {ele.sub?.map((r: MenuProp, index: number) => (
-                  <div className="blog_navbar_subitem" key={index}>
+                  <Link onClick={(e) => e.stopPropagation()} to={r.path} className="blog_navbar_subitem" key={index}>
                     {r.menu}
-                  </div>
+                  </Link>
                 ))}
               </div>
             </CSSTransition>
           );
           return (
-            <MotionEle key={index} aosOption={{ name: 'fade-up', delay: 300 + index * 150 }} className={'noselect blog_navbar_item'}>
+            <MotionEle
+              key={index}
+              aosOption={{ name: 'fade-up', delay: 300 + index * 150 }}
+              className={classnames('noselect blog_navbar_item', { sel: location.pathname === ele.path })}
+              handleClick={() => history.push(`${ele.path}`)}
+            >
               <>
                 {ele.sub ? (
                   <>

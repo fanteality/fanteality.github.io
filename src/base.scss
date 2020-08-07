@@ -1,29 +1,34 @@
 p {
-    margin: 0;
+  margin: 0;
+}
+a {
+  display: block;
+  color: #575757;
+  text-decoration: none;
 }
 body {
-    color: #575757;
+  color: #575757;
 }
 // 文本无法选择复制
 .noselect {
-    user-select: none;
+  user-select: none;
 }
 .blog {
-    display: flex;
+  display: flex;
 }
 .blog_content {
-    width: 80%;
+  width: 80%;
 }
 //iconfont图标样式
 .icon {
-    width: 1em;
-    height: 1em;
-    overflow: hidden;
-    cursor: pointer;
-    vertical-align: -0.15em;
-    &:hover {
-        fill: #333!important;
-    }
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  cursor: pointer;
+  vertical-align: -0.15em;
+  &:hover {
+    fill: #333 !important;
+  }
 }
 /* 入场动画 */
 .alert-enter {

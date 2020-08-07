@@ -24,6 +24,9 @@
     line-height: 60px;
     z-index: 9;
     position: relative;
+    &.sel {
+      color: $color;
+    }
     &:hover {
       color: $color;
       .hover_line {

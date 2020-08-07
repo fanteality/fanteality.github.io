@@ -4,4 +4,5 @@ export default {
     Home: lazy(() => import('./Home')),
     Css: lazy(() => import('./Css')),
     React: lazy(() => import('./React')),
+    FrontEnd: lazy(() => import('./FrontEnd')),
 } as any;
