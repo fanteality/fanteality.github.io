@@ -36,30 +36,27 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
     { menu: '兴趣百科', path: '/Mix' },
   ];
   const [subIdx, setSubIdx] = useState<number | null>(null);
+  const [isNavRender, setRender] = useState<boolean>(false);
   const hideBanner = window.sessionStorage.getItem('hideBanner');
   useEffect(() => {
     let navDomArr: NodeListOf<Element> = document.querySelectorAll('.blog_navbar_item');
-    if (hideBanner) {
+    if (isNavRender) {
       for (let i = 0; i < navDomArr.length; i++) {
         navDomArr[i].addEventListener('mouseenter', function () {
           setSubIdx(() => i);
         });
         navDomArr[i].addEventListener('mouseleave', function () {
-          console.log(777);
-          
           setSubIdx(() => null);
         });
-        console.log(1111);
-        
       }
-      window.sessionStorage.setItem('isNavRender', '1');
     }
-  }, [hideBanner]);
+  }, [isNavRender]);
   function judgeMotion(path: string): boolean {
-    return location.pathname !== path && !window.sessionStorage.getItem('isNavRender');
+    return location.pathname !== path && !isNavRender;
   }
-  console.log(subIdx);
-
+  function handleEnd(): void {
+    setRender(true);
+  }
   return hideBanner ? (
     <div className="blog_navbar">
       <div className="blog_navbar_content">
@@ -78,7 +75,8 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
           return (
             <MotionEle
               key={index}
-              aosOption={judgeMotion(ele.path) ? { name: 'fade-up', delay: 300 + index * 150 } : null}
+              motionEnd={index === navList.length - 1 ? handleEnd : null}
+              aosOption={judgeMotion(ele.path) ? { name: 'fade-up', delay: 300 + index * 150} : null}
               className={classnames('noselect blog_navbar_item', { sel: location.pathname === ele.path })}
               handleClick={() => history.push(`${ele.path}`)}
             >

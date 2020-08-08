@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useCallback } from 'react';
 import { Motion, spring, presets } from 'react-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -13,15 +13,22 @@ interface Iprop {
   targetValue?: number;
   children: ReactElement | string | ReactElement[];
   handleClick?: () => void;
+  motionEnd?: (() => void) | null;
 }
 export default (props: Iprop) => {
-  const { className = '', children, attrname, startValue = 0, targetValue = 0, aosOption, handleClick } = props;
-
+  const { className = '', children, attrname, startValue = 0, targetValue = 0, aosOption, handleClick, motionEnd } = props;
+  const handleObserve = useCallback(() => {
+    let ele: NodeListOf<Element> | null = document.querySelectorAll('.' + className.split(' ').join('.'));
+    ele[ele.length - 1]!.addEventListener('transitionend', () => {
+      motionEnd && motionEnd();
+    });
+  }, [className, motionEnd]);
   useEffect(() => {
     AOS.init({
       once: true,
     });
-  }, []);
+    aosOption && motionEnd && handleObserve();
+  }, [aosOption, motionEnd, className, handleObserve]);
 
   let ele: ReactElement;
   if (aosOption) {
