@@ -1,0 +1,18 @@
+@import '../../config.scss';
+.blog_notFound {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-size: 18px;
+  }
+  a {
+    color: #fff;
+    margin-top: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: $color;
+  }
+}

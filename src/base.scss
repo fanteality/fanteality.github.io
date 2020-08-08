@@ -18,6 +18,9 @@ body {
 }
 .blog_content {
   width: 80%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 //iconfont图标样式
 .icon {

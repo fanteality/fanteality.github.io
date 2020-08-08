@@ -32,7 +32,7 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
       ],
     },
     { menu: 'Java', path: '/Java' },
-    { menu: '优站收藏', path: '/TopSite' },
+    { menu: '优站收藏', path: '/TopSites' },
     { menu: '兴趣百科', path: '/Mix' },
   ];
   const [subIdx, setSubIdx] = useState<number | null>(null);

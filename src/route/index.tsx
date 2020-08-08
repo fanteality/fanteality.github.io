@@ -16,9 +16,7 @@ export default (props: { hide?: string | null }) => {
     <React.Fragment>
       <SideBar />
       <div className={hideBanner ? 'blog_content content' : 'blog_content'}>
-        <div>
-          <Navbar />
-        </div>
+        <Navbar />
         <React.Suspense fallback={<PageLoading />}>
           <Switch>
             {routeConfig.map((ele: IFMenu, index: number) => {
@@ -35,13 +33,12 @@ export default (props: { hide?: string | null }) => {
                         <Component {...props} />
                       </DocumentTitle>
                     );
-                    return WrapComponent;
+                    return !hideBanner ? index === 0 ? WrapComponent : <Redirect to="/" /> : WrapComponent;
                   }}
                 />
               );
             })}
-            {!hideBanner && <Redirect to="/" />}
-            <Redirect from="/*" to="/NotFound" />
+            <Redirect to="/NotFound" />
           </Switch>
         </React.Suspense>
       </div>
