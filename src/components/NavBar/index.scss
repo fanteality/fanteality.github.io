@@ -26,6 +26,9 @@
     position: relative;
     &.sel {
       color: $color;
+      .icon {
+        fill: $color !important;
+      }
     }
     &:hover {
       color: $color;
