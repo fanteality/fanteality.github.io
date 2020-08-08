@@ -45,8 +45,12 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
           setSubIdx(() => i);
         });
         navDomArr[i].addEventListener('mouseleave', function () {
+          console.log(777);
+          
           setSubIdx(() => null);
         });
+        console.log(1111);
+        
       }
       window.sessionStorage.setItem('isNavRender', '1');
     }
@@ -54,6 +58,8 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
   function judgeMotion(path: string): boolean {
     return location.pathname !== path && !window.sessionStorage.getItem('isNavRender');
   }
+  console.log(subIdx);
+
   return hideBanner ? (
     <div className="blog_navbar">
       <div className="blog_navbar_content">
