@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Icon from 'components/Icon';
 import classnames from 'classnames';
+import Cookie from 'js-cookie';
 import MotionEle from 'components/MotionEle';
 import { CSSTransition } from 'react-transition-group';
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
@@ -50,12 +51,18 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
         });
       }
     }
+    return () => {
+      Cookie.remove('part');
+    };
   }, [isNavRender]);
   function judgeMotion(path: string): boolean {
-    return location.pathname !== path && !isNavRender;
+    return !location.pathname.startsWith(path) && !isNavRender;
   }
   function handleEnd(): void {
     setRender(true);
+  }
+  function judgeSel(ele: MenuProp, index: number): boolean {
+    return (location.pathname.startsWith(ele.path) && index !== 0) || location.pathname === ele.path || Cookie.get('part') === ele.menu;
   }
   return hideBanner ? (
     <div className="blog_navbar">
@@ -76,8 +83,8 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
             <MotionEle
               key={index}
               motionEnd={index === navList.length - 1 ? handleEnd : null}
-              aosOption={judgeMotion(ele.path) ? { name: 'fade-up', delay: 300 + index * 150} : null}
-              className={classnames('noselect blog_navbar_item', { sel: location.pathname === ele.path })}
+              aosOption={judgeMotion(ele.path) ? { name: 'fade-up', delay: 300 + index * 150 } : null}
+              className={classnames('noselect blog_navbar_item', { sel: judgeSel(ele, index) })}
               handleClick={() => history.push(`${ele.path}`)}
             >
               <>

@@ -1,0 +1,70 @@
+@import '../../config.scss';
+.blog_article {
+  padding: 20px 40px;
+  &_title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &_info {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    margin: 20px 0 40px;
+    &_view {
+      span {
+        font-weight: 700;
+      }
+    }
+    &_tag {
+      margin: 0 20px;
+      span {
+        cursor: pointer;
+        color: #646464;
+        margin-left: 8px;
+        font-weight: 700;
+        display: inline-block;
+        position: relative;
+        &:hover {
+          color: $color;
+        }
+      }
+    }
+  }
+  &_foreword {
+    display: flex;
+    min-height: 80px;
+    position: relative;
+    border-radius: 10px;
+    align-items: center;
+    font-style: italic;
+    box-sizing: border-box;
+    line-height: 1.6;
+    padding: 20px 40px 20px 80px;
+    background-color: #eeeeee;
+    &:before {
+      color: #a0a0a0;
+      left: 20px;
+      top: 50%;
+      width: 1em;
+      content: '前言';
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.5;
+      font-style: normal;
+      position: absolute;
+      padding-left: 10px;
+      border-left: 5px solid #a0a0a0;
+      transform: translateY(-50%);
+    }
+  }
+  &_content{
+    pre{
+      color: #fff;
+      width: 100%;
+      padding: 20px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      background-color: #333;
+    }
+  }
+}

@@ -15,4 +15,5 @@ export const routeConfig: IFMenu[] = [
   { title: '优站收藏', path: '/TopSites', component: 'TopSites' },
   { title: '兴趣百科', path: '/Mix', component: 'Mix' },
   { title: '虚无', path: '/NotFound', component: 'NotFound' },
+  { title: '文章', path: '/Article/:objectId', component: 'Article' },
 ];

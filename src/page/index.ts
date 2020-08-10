@@ -6,4 +6,5 @@ export default {
   React: lazy(() => import('./React')),
   FrontEnd: lazy(() => import('./FrontEnd')),
   NotFound: lazy(() => import('./NotFound')),
+  Article: lazy(() => import('./Article')),
 } as any;

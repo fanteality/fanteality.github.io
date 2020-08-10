@@ -1,31 +1,22 @@
 #dark-toast {
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 40%;
-    background: #333;
-    z-index: 1000;
-    padding: 5px 10px;
-    background: rgba(29, 29, 29, 0.73);
-    border-radius: 5px;
-    color: #fff;
-    text-align: center;
-    min-width: 100px;
-    pointer-events: none; // 点击穿透
-    i {
-        font-size: 40px;
-        display: block;
-        &.rotate-loop {
-            animation: rotate-loop 1s infinite;
-        }
+  top: 40%;
+  left: 50%;
+  max-width: 40%;
+  z-index: 100;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  color: #6e6565;
+  pointer-events: none;
+  position: fixed;
+  transform: translateX(-50%);
+  background-color: #ffffee;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  .dark-toast-box {
+    display: flex;
+    align-items: center;
+    .icon{
+        margin-right: 10px;
     }
-}
-@keyframes rotate-loop {
-    from {
-        transform: rotateZ(0deg);
-    }
-    to {
-        transform: rotateZ(360deg);
-    }
+  }
 }

@@ -11,3 +11,7 @@ export function indexHot(): Promise<any> {
   query.limit(5);
   return query.find();
 }
+// 获取指定文章
+export function getArticle(objectId: string): Promise<any> {
+  return query.get(objectId);
+}
