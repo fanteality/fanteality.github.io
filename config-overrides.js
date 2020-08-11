@@ -7,7 +7,8 @@ module.exports = function override(config, env) {
     config.resolve.alias = {
         ...config.resolve.alias,
         page: path.resolve(appSrc, './page'),
-        components: path.resolve(appSrc, './components'),
+        '@': path.resolve(appSrc, './components'),
+        '#':path.resolve(appSrc,'./utils')
     };
     //   配置postcss
     require('react-app-rewire-postcss')(config, {

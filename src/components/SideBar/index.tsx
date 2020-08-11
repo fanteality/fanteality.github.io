@@ -1,6 +1,6 @@
 import React from 'react';
-import Icon from 'components/Icon';
-import MotionEle from 'components/MotionEle';
+import Icon from '@/Icon';
+import MotionEle from '@/MotionEle';
 import './index.scss';
 export default () => {
     const hideBanner = window.sessionStorage.getItem('hideBanner') || '';

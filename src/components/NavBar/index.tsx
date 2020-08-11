@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Icon from 'components/Icon';
+import Icon from '@/Icon';
 import classnames from 'classnames';
 import Cookie from 'js-cookie';
-import MotionEle from 'components/MotionEle';
+import MotionEle from '@/MotionEle';
 import { CSSTransition } from 'react-transition-group';
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 import './index.scss';

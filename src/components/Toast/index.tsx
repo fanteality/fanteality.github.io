@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Icon from 'components/Icon';
+import Icon from '@/Icon';
 import './index.scss';
 export default class Toast extends React.Component {
   isShow: boolean = false;

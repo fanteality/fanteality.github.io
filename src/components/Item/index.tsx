@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import MotionEle from 'components/MotionEle';
-import Icon from 'components/Icon';
+import MotionEle from '@/MotionEle';
+import Icon from '@/Icon';
 import Cookie from 'js-cookie';
 import './index.scss';
 interface Iprop extends RouteComponentProps {

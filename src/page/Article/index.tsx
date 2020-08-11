@@ -1,10 +1,10 @@
 import React from 'react';
 import { getArticle } from '../../utils/http';
-import Toast from 'components/Toast';
-import Icon from 'components/Icon';
+import Toast from '@/Toast';
+import Icon from '@/Icon';
+import PageLoading from '@/PageLoading';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/solarized-dark.css';
-import PageLoading from 'components/PageLoading';
 import { RouteComponentProps, match } from 'react-router-dom';
 import './index.scss';
 
@@ -37,6 +37,8 @@ export default class Article extends React.Component<Prop, State> {
     this.setState({ loading: true });
     try {
       let info = await getArticle(objectId);
+      info.set('viewCount', info.viewCount + 1);
+      info.save();
       await this.setState({ info, loading: false, html: info.content });
       this.initCode();
     } catch (error) {
@@ -51,7 +53,7 @@ export default class Article extends React.Component<Prop, State> {
   }
   initCode(): void {
     hljs.configure({
-      languages: ['javascript','css','html'],
+      languages: ['javascript', 'css', 'html'],
     });
     hljs.initHighlighting();
   }
