@@ -51,18 +51,19 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
         });
       }
     }
-    return () => {
-      Cookie.remove('part');
-    };
   }, [isNavRender]);
-  function judgeMotion(path: string): boolean {
-    return !location.pathname.startsWith(path) && !isNavRender;
+  function judgeMotion(ele: MenuProp, index: number): boolean {
+    return !judgeSel(ele, index) && !isNavRender;
   }
   function handleEnd(): void {
     setRender(true);
   }
   function judgeSel(ele: MenuProp, index: number): boolean {
     return (location.pathname.startsWith(ele.path) && index !== 0) || location.pathname === ele.path || Cookie.get('part') === ele.menu;
+  }
+  function switchNav(ele: MenuProp): void {
+    Cookie.remove('part');
+    history.push(`${ele.path}`);
   }
   return hideBanner ? (
     <div className="blog_navbar">
@@ -83,9 +84,9 @@ const NavBar = ({ history, location }: RouteComponentProps) => {
             <MotionEle
               key={index}
               motionEnd={index === navList.length - 1 ? handleEnd : null}
-              aosOption={judgeMotion(ele.path) ? { name: 'fade-up', delay: 300 + index * 150 } : null}
+              aosOption={judgeMotion(ele, index) ? { name: 'fade-up', delay: 300 + index * 150 } : null}
               className={classnames('noselect blog_navbar_item', { sel: judgeSel(ele, index) })}
-              handleClick={() => history.push(`${ele.path}`)}
+              handleClick={() => switchNav(ele)}
             >
               <>
                 {ele.sub ? (
