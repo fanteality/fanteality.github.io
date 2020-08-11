@@ -2,6 +2,8 @@ import React from 'react';
 import { getArticle } from '../../utils/http';
 import Toast from 'components/Toast';
 import Icon from 'components/Icon';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/solarized-dark.css';
 import PageLoading from 'components/PageLoading';
 import { RouteComponentProps, match } from 'react-router-dom';
 import './index.scss';
@@ -13,8 +15,10 @@ interface State {
   info: {
     [propName: string]: any;
   };
+  html: string;
   loading: boolean;
 }
+
 export default class Article extends React.Component<Prop, State> {
   readonly state = {
     info: {
@@ -26,12 +30,15 @@ export default class Article extends React.Component<Prop, State> {
       content: '',
     },
     loading: false,
+    html: '',
   };
   async componentDidMount() {
     let { objectId } = this.props.match.params;
     this.setState({ loading: true });
     try {
-      this.setState({ info: await getArticle(objectId), loading: false });
+      let info = await getArticle(objectId);
+      await this.setState({ info, loading: false, html: info.content });
+      this.initCode();
     } catch (error) {
       Toast.info('文章加载失败', 1500);
       this.setState({
@@ -41,11 +48,16 @@ export default class Article extends React.Component<Prop, State> {
   }
   handleTag(e: React.MouseEvent<HTMLSpanElement>, ele: string) {
     e.stopPropagation();
-    console.log(ele);
+  }
+  initCode(): void {
+    hljs.configure({
+      languages: ['javascript','css','html'],
+    });
+    hljs.initHighlighting();
   }
   render() {
-    let { loading, info } = this.state;
-    let { title, tag, viewCount, createdAt, foreword, content } = info;
+    let { loading, info, html } = this.state;
+    let { title, tag, viewCount, createdAt, foreword } = info;
     return (
       <div className="blog_article">
         {loading ? (
@@ -68,7 +80,7 @@ export default class Article extends React.Component<Prop, State> {
               <div className="blog_article_info_time">创建于：{createdAt}</div>
             </div>
             <div className="blog_article_foreword">{foreword}</div>
-            <div className="blog_article_content" dangerouslySetInnerHTML={{ __html: content }}></div>
+            <div className="blog_article_content" dangerouslySetInnerHTML={{ __html: html }}></div>
           </>
         )}
       </div>

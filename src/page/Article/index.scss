@@ -58,13 +58,11 @@
     }
   }
   &_content{
-    pre{
-      color: #fff;
-      width: 100%;
+    .code{
+      line-height: 1.4;
       padding: 20px;
       border-radius: 10px;
-      box-sizing: border-box;
-      background-color: #333;
+      font-family: Arial, Helvetica, sans-serif;
     }
   }
 }
